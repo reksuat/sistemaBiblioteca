@@ -16,11 +16,10 @@ public class Revista extends Livro {
 	public void setEdicao(int edicao) {
 		this.edicao = edicao;
 	}
-	
+	@Override
 	public void exibirDetalhes() {
-		System.out.println("Título: "+getTitulo());
-	    System.out.println("Autor: "+getAutor());
-	    System.out.println("Preço: "+getPreco());
+		System.out.println("Revista");
+		super.exibirDetalhes();
 		System.out.println("Edição nº: "+edicao);
 	}
 public String toString() {
