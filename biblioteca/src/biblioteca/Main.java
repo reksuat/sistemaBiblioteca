@@ -33,6 +33,7 @@ public class Main {
                     String a = scanner.nextLine();
                     System.out.print("Preco: R$");
                     double p = scanner.nextDouble();
+                    scanner.nextLine();
 
                     if (tipo == 1) {
                         System.out.print("Paginas: ");
@@ -53,35 +54,30 @@ public class Main {
                     if (biblioteca.isEmpty()) {
                         System.out.println("A biblioteca está vazia.");
                     } else {
-                        for (int i = 0; i < biblioteca.size(); i++) {
-                            Livro l = biblioteca.get(i);
-                            String tipoDescricao = "";
-
-                            if (l instanceof LivroFisico) {
-                                tipoDescricao = "Livro: ";
-                            } else if (l instanceof Ebook) {
-                                tipoDescricao = "Ebook: ";
-                            } else if (l instanceof Revista) {
-                                tipoDescricao = "Revista: ";
-                            }
- 
-                            	System.out.println((i + 1) + ". " + tipoDescricao + l.getTitulo() + " - R$ " + l.getPreco());
+                        for (Livro l : biblioteca) {
+                        	l.exibirDetalhes();
+                        	System.out.println("\n");
                         }
                     }
                     break;
                 case 3:
-                    System.out.println("1 - Livro Físico / 2 - Ebook / 3 - Revista");
+                    System.out.println("\n1-Fisico\n2-Ebook\n3-Revista");
                     int buscaTipo = scanner.nextInt();
                     scanner.nextLine();
-
+                    
+                    boolean encontrou = false;
                     for (Livro l : biblioteca) {
-                        if (buscaTipo == 1 && l instanceof LivroFisico) {
-                            System.out.println("Físico: " + l.getTitulo());
-                        } else if (buscaTipo == 2 && l instanceof Ebook) {
-                            System.out.println("Ebook: " + l.getTitulo());
-                        } else if (buscaTipo == 3 && l instanceof Revista) {
-                            System.out.println("Revista " + l.getTitulo());
+                        if ((buscaTipo == 1 && l instanceof LivroFisico) ||
+                            (buscaTipo == 2 && l instanceof Ebook) ||
+                            (buscaTipo == 3 && l instanceof Revista)) {
+                            
+                        	l.exibirDetalhes();
+                            System.out.println("\n");
+                            encontrou = true;
                         }
+                    }
+                    	if (!encontrou) {
+                    		System.out.println("Nenhum item deste tipo foi encontrado na biblioteca.");
                     }
                     break;
                 case 4:
@@ -91,7 +87,8 @@ public class Main {
                     } else {
                     	System.out.println("Lista ordenada por preço!");
                         for (Livro l : biblioteca) {
-                            System.out.println("Título: " + l.getTitulo() + " | Preço: R$ " + String.format("%.2f", l.getPreco()));
+                        	l.exibirDetalhes();
+                            System.out.println("-----------------");
                         }
                     }
                     break;
