@@ -17,6 +17,7 @@ public class LivroFisico extends Livro {
 	}
 	@Override
 	public void exibirDetalhes() {
+		System.out.println("Livro físico");
 		super.exibirDetalhes();
 		System.out.println("Páginas: "+paginas);
 	}
